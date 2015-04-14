@@ -79,7 +79,7 @@ func probablyEnglish(s string) bool {
 	return totalScore > arbitraryScoreCutoff
 }
 
-func decryptHex(encryptedHex []byte) string {
+func decryptSingleXORdHex(encryptedHex []byte) string {
 	b, err := hex.DecodeString(string(encryptedHex))
 	if err != nil {
 		panic(err)
