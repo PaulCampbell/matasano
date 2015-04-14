@@ -14,3 +14,19 @@ func convertToBase64(input []byte) []byte {
 	base64.StdEncoding.Encode(encoded, b)
 	return encoded
 }
+
+func fixedXOR(key []byte, secretString []byte) []byte {
+	b, err := hex.DecodeString(string(key))
+	if err != nil {
+		panic(err)
+	}
+	b2, err := hex.DecodeString(string(secretString))
+	if err != nil {
+		panic(err)
+	}
+	prod := make([]byte, len(b2))
+	for i := 0; i < len(prod); i++ {
+		prod[i] = b[i] ^ b2[i]
+	}
+	return []byte(hex.EncodeToString(prod))
+}
